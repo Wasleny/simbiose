@@ -55,4 +55,10 @@ export const Button = styled.div`
     font-size: 1.2rem;
     margin: auto 0;
     color: #ccc;
+
+    button {
+        margin: 0 auto 20px auto;
+        padding: 10px 16%;
+        background-color: #fafbfd;
+    }
 `;

@@ -23,11 +23,13 @@ const Project = () => {
     }, []);
 
     useEffect(() => {
-        setQuantityPositions(projects.length -1);
+        setQuantityPositions(projects.length - 1);
     }, [projects]);
 
-    const handlePosition = () => {
-        setPosition(position + 1);
+    const handlePosition = (direction) => {
+        direction === "next"
+            ? setPosition(position + 1)
+            : setPosition(position - 1);
     };
 
     const changePosition = (p) => {
@@ -50,24 +52,51 @@ const Project = () => {
                         Ver Outros Projetos do Proponente
                     </h2>
                     <Page>
-                        <Arrow
-                            directionLeft={true}
-                            onClick={() => handlePosition()}
-                        >
-                            <MdKeyboardArrowLeft />
-                        </Arrow>
+                        {position !== 0 ? (
+                            <Arrow
+                                directionLeft={true}
+                                onClick={() => handlePosition("prev")}
+                            >
+                                <MdKeyboardArrowLeft />
+                            </Arrow>
+                        ) : (
+                            <Arrow
+                                disabled
+                                directionLeft={true}
+                                onClick={() => handlePosition("prev")}
+                            >
+                                <MdKeyboardArrowLeft />
+                            </Arrow>
+                        )}
                         {projects[position].map((project, index) => (
                             <Card key={index} project={project} />
                         ))}
-                        <Arrow
-                            directionLeft={false}
-                            onClick={() => handlePosition()}
-                        >
-                            <MdKeyboardArrowRight />
-                        </Arrow>
+                        {position !== quantityPositions ? (
+                            <Arrow
+                                directionLeft={false}
+                                onClick={() => handlePosition("next")}
+                            >
+                                <MdKeyboardArrowRight />
+                            </Arrow>
+                        ) : (
+                            <Arrow
+                                disabled
+                                directionLeft={false}
+                                onClick={() => handlePosition()}
+                            >
+                                <MdKeyboardArrowRight />
+                            </Arrow>
+                        )}
                     </Page>
 
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
+                        <ChangePage
+                            actived={0 === position}
+                            key="button0"
+                            onClick={() => changePosition(0)}
+                        >
+                            <BsCircleFill size="12" />
+                        </ChangePage>
                         {Array.from(
                             { length: quantityPositions },
                             (_, i) => i + 1
@@ -81,7 +110,13 @@ const Project = () => {
                             </ChangePage>
                         ))}
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'end', color: '#999'}}>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "end",
+                            color: "#999",
+                        }}
+                    >
                         <a href="#">+ VER TODOS</a>
                     </div>
                 </div>

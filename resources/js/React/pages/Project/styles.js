@@ -19,6 +19,9 @@ export const Arrow = styled.button`
     z-index: 1;
     font-size: 3rem;
     position: relative;
+    :disabled {
+        cursor: no-drop;
+    }
     ${(props) => (props.directionLeft ? "left: 10px;" : "right: 10px")}
 `;
 

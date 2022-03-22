@@ -40,7 +40,7 @@ const Card = ({ project }) => {
                 </h5>
             </Values>
             <Button>
-                <button style={{margin: '0 auto 0 auto'}}>ADICIONAR</button>
+                <button>ADICIONAR</button>
                 <AiOutlineHeart size={40} />
             </Button>
         </CardStyle>
