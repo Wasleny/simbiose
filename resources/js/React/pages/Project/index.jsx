@@ -1,9 +1,12 @@
 import { apiProject } from "@/React/services/data";
 import React, { useState, useEffect } from "react";
-import { Arrow, ChangePage, Page } from "./styles";
+import { Arrow, ButtonList, ChangePage, Page } from "./styles";
 import Card from "@/React/components/Card";
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 import { BsCircleFill } from "react-icons/bs";
+import UseRedirectView from "@/React/utils/UseRedirectView";
+import SkeletonContent from "@/React/components/Skeleton";
+import { SkeletonItem } from "@/React/components/Skeleton/styles";
 
 const Project = () => {
     const [projects, setProjects] = useState([]);
@@ -39,7 +42,24 @@ const Project = () => {
     return (
         <>
             {loading ? (
-                <></>
+                <SkeletonContent>
+                    <SkeletonItem
+                        width="350px"
+                        height="20px"
+                        margin="10px 0 0 10px"
+                    />
+                    <SkeletonItem height="450px" margin="20px 0" />
+                    <SkeletonItem
+                        width="80%"
+                        height="10px"
+                        margin="20px auto 20px auto"
+                    />
+                    <SkeletonItem
+                        width="100px"
+                        height="30px"
+                        margin="10px 0 20px auto"
+                    />
+                </SkeletonContent>
             ) : (
                 <div>
                     <h2
@@ -117,7 +137,9 @@ const Project = () => {
                             color: "#999",
                         }}
                     >
-                        <a href="#">+ VER TODOS</a>
+                        <ButtonList onClick={() => UseRedirectView.to("list")}>
+                            + VER TODOS
+                        </ButtonList>
                     </div>
                 </div>
             )}

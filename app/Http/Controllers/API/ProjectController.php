@@ -20,4 +20,21 @@ class ProjectController extends Controller
 
         return new DataResource($projects);
     }
+
+    public function list()
+    {
+        // $aux = (array) TbProjetoRouanetTeste::get();
+        $projects = TbProjetoRouanetTeste::get();
+        // dd($aux);
+
+        // $projects = [];
+        // $aux = array_shift($aux);
+
+        // dd($aux);
+        // while (count($aux) > 0) {
+        //     array_push($projects, array_splice($aux, 0, 3));
+        // }
+
+        return new DataResource($projects);
+    }
 }

@@ -46,3 +46,7 @@ export const ChangePage = styled.button`
             ? `color: #ccc;`
             : `color: transparent; border: 1px solid #ccc`}
 `;
+
+export const ButtonList = styled.a`
+    cursor: pointer;
+`;

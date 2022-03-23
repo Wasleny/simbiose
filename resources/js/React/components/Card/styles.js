@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CardStyle = styled.div`
     /* width: 350px; */
-    width: 29%;
     height: 450px;
     background-color: #fff;
     color: black;
@@ -10,6 +9,7 @@ export const CardStyle = styled.div`
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: relative;
+    width: ${(props) => (props.width !== null ? props.width : "29%")};
 `;
 
 export const CardTitle = styled.h4`

@@ -9,10 +9,19 @@ const {
 import { Values } from "@/React/pages/Project/styles";
 import FormatCurrency from "../../utils/FormatCurrency";
 import { AiOutlineHeart } from "react-icons/ai";
+import { toast } from "react-toastify";
 
-const Card = ({ project }) => {
+const Card = ({ project, width = null }) => {
+    function handleAdd() {
+        toast.warning('Que pena! Esta funcionalidade ainda está sendo desenvolvida!')
+    }
+
+    function handleGetLike() {
+        toast.warning('Este projeto é interessante, né? Quando a opção de favoritar estiver funcionando, volta aqui!')
+    }
+
     return (
-        <CardStyle>
+        <CardStyle width={width}>
             <Badge>rouanet</Badge>
             <CardTitle>{project.nome}</CardTitle>
             <CardSubtitle>
@@ -40,8 +49,8 @@ const Card = ({ project }) => {
                 </h5>
             </Values>
             <Button>
-                <button>ADICIONAR</button>
-                <AiOutlineHeart size={40} />
+                <button onClick={() => handleAdd()}>ADICIONAR</button>
+                <AiOutlineHeart size={40} style={{cursor: 'pointer'}} onClick={() => handleGetLike()} />
             </Button>
         </CardStyle>
     );

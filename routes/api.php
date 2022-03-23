@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiResource('project', ProjectController::class)->only(['index']);
+Route::get('project/list', [ProjectController::class, 'list']);
