@@ -8,32 +8,18 @@ use App\Models\TbProjetoRouanetTeste;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index($quantity)
     {
-        $aux = (array) TbProjetoRouanetTeste::take(60)->get();
+        $aux = (array) TbProjetoRouanetTeste::take($quantity)->get();
         $projects = [];
-        $aux = array_shift($aux);
-
-        while (count($aux) > 0) {
-            array_push($projects, array_splice($aux, 0, 3));
-        }
+        $projects = array_shift($aux);
 
         return new DataResource($projects);
     }
 
     public function list()
     {
-        // $aux = (array) TbProjetoRouanetTeste::get();
         $projects = TbProjetoRouanetTeste::get();
-        // dd($aux);
-
-        // $projects = [];
-        // $aux = array_shift($aux);
-
-        // dd($aux);
-        // while (count($aux) > 0) {
-        //     array_push($projects, array_splice($aux, 0, 3));
-        // }
 
         return new DataResource($projects);
     }

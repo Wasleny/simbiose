@@ -19,8 +19,8 @@ export const ButtonBack = styled.button`
 
 export const Div = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, 30%);
     gap: 10px;
     justify-content: center;
     padding: 30px 0 60px 0;
+    grid-template-columns: repeat(auto-fill, ${(props) => props.percentage ? props.percentage : ''});
 `;

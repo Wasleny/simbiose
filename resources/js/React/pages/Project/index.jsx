@@ -12,22 +12,39 @@ const Project = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [position, setPosition] = useState(0);
-    const [quantityPositions, setQuantityPositions] = useState(0);
+    const [quantityPositions, setQuantityPositions] = useState(10);
 
     const fetchData = async () => {
-        await apiProject.index().then((response) => {
-            setProjects(response.data.data);
-            setLoading(false);
-        });
+        const width =
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
+
+        let quantityProjectsPerSlider;
+
+        width < 700
+            ? (quantityProjectsPerSlider = 1)
+            : (quantityProjectsPerSlider = Math.trunc((width - 50) / 350));
+
+        await apiProject
+            .index(quantityProjectsPerSlider * quantityPositions)
+            .then((response) => {
+                let aux = [];
+                while (response.data.data.length > 0) {
+                    aux = [
+                        ...aux,
+                        response.data.data.splice(0, quantityProjectsPerSlider),
+                    ];
+                }
+
+                setProjects(aux);
+                setLoading(false);
+            });
     };
 
     useEffect(() => {
         fetchData();
     }, []);
-
-    useEffect(() => {
-        setQuantityPositions(projects.length - 1);
-    }, [projects]);
 
     const handlePosition = (direction) => {
         direction === "next"
@@ -91,7 +108,7 @@ const Project = () => {
                         {projects[position].map((project, index) => (
                             <Card key={index} project={project} />
                         ))}
-                        {position !== quantityPositions ? (
+                        {position !== quantityPositions - 1 ? (
                             <Arrow
                                 directionLeft={false}
                                 onClick={() => handlePosition("next")}
@@ -118,7 +135,7 @@ const Project = () => {
                             <BsCircleFill size="12" />
                         </ChangePage>
                         {Array.from(
-                            { length: quantityPositions },
+                            { length: quantityPositions - 1 },
                             (_, i) => i + 1
                         ).map((p) => (
                             <ChangePage

@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('project', ProjectController::class)->only(['index']);
 Route::get('project/list', [ProjectController::class, 'list']);
+Route::get('project/{quantity}', [ProjectController::class, 'index']);

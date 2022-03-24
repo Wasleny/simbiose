@@ -1,8 +1,8 @@
 import api from "../../api";
 
 class Project {
-    index() {
-        return api.get("project");
+    index(quantity) {
+        return api.get(`project/${quantity}`);
     }
 
     list() {

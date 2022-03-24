@@ -9,10 +9,19 @@ import { ButtonBack, Div } from "./styles";
 const ListProjects = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [quantityProjectsPerRow, setQuantityProjectsPerRow] = useState("");
 
     const fetchData = async () => {
         await apiProject.list().then((response) => {
             setProjects(response.data.data);
+            const width =
+                window.innerWidth ||
+                document.documentElement.clientWidth ||
+                document.body.clientWidth;
+
+            if (width < 500) setQuantityProjectsPerRow("100%");
+            else if (width < 850) setQuantityProjectsPerRow("45%");
+            else setQuantityProjectsPerRow("30%");
             setLoading(false);
         });
     };
@@ -30,47 +39,24 @@ const ListProjects = () => {
                         height="50px"
                         margin="10px 0 0 20px"
                     />
-                    <div style={{ display: "flex" }}>
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                    </div>
-                    <div style={{ display: "flex" }}>
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                        <SkeletonItem
-                            width="30%"
-                            height="450px"
-                            margin="10px 0 0 20px"
-                        />
-                    </div>
+                    <SkeletonItem
+                        width="95%"
+                        height="450px"
+                        margin="10px 0 0 20px"
+                    />
+                    <SkeletonItem
+                        width="95%"
+                        height="450px"
+                        margin="10px 0 0 20px"
+                    />
                 </SkeletonContent>
             ) : (
                 <>
                     <ButtonBack onClick={() => UseRedirectView.to("")}>
                         Voltar
                     </ButtonBack>
-                    <Div>
+                    {console.log(quantityProjectsPerRow)}
+                    <Div percentage={quantityProjectsPerRow}>
                         {projects.map((project, index) => (
                             <Card project={project} key={index} width="100%" />
                         ))}
