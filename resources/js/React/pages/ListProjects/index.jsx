@@ -19,7 +19,7 @@ const ListProjects = () => {
                 document.documentElement.clientWidth ||
                 document.body.clientWidth;
 
-            if (width < 500) setQuantityProjectsPerRow("100%");
+            if (width < 600) setQuantityProjectsPerRow("100%");
             else if (width < 850) setQuantityProjectsPerRow("45%");
             else setQuantityProjectsPerRow("30%");
             setLoading(false);
