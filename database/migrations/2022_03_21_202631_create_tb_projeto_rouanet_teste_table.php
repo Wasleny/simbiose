@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbProjetoRouanetTestesTable extends Migration
+class CreateTbProjetoRouanetTesteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTbProjetoRouanetTestesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_projeto_rouanet_testes', function (Blueprint $table) {
+        Schema::create('tb_projeto_rouanet_teste', function (Blueprint $table) {
             $table->id('id_projeto');
             $table->string('pronac', 191);
             $table->string('ano_projeto', 191);
@@ -58,6 +58,6 @@ class CreateTbProjetoRouanetTestesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_projeto_rouanet_testes');
+        Schema::dropIfExists('tb_projeto_rouanet_teste');
     }
 }
