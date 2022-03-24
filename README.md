@@ -1,1 +1,6 @@
-#### Devido a estrutura do Laravel, foi necessário alterar o nome da tabela, mas o arquivo segue na raiz do projeto
+### Para rodar a aplicação é necessário:
+
+- criar arquivo .env
+- rodar npm install e composer install
+- rodar php artisan key:generate
+- ter um banco com o mesmo nome do .env (e os dados)
